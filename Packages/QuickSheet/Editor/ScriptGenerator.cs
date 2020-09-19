@@ -6,28 +6,24 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 using System;
-using UnityEngine;
-using UnityEditor;
-using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Globalization;
 
-using Object = UnityEngine.Object;
 
 namespace UnityQuickSheet
 {
     internal class ScriptGenerator
     {
         private const int CommentWrapLength = 35;
-        
+
         private TextWriter m_Writer;
         private string m_Text;
         private ScriptPrescription m_ScriptPrescription;
         private string m_Indentation;
         private int m_IndentLevel = 0;
-        
+
         private int IndentLevel
         {
             get
@@ -38,11 +34,11 @@ namespace UnityQuickSheet
             {
                 m_IndentLevel = value;
                 m_Indentation = String.Empty;
-                for (int i=0; i<m_IndentLevel; i++)
+                for (int i = 0; i < m_IndentLevel; i++)
                     m_Indentation += "  ";
             }
         }
-        
+
         private string ClassName
         {
             get
@@ -114,7 +110,7 @@ namespace UnityQuickSheet
         }
 
         private string AssetPostprocessorClass
-        { 
+        {
             get
             {
                 if (!string.IsNullOrEmpty(m_ScriptPrescription.assetPostprocessorClass))
@@ -122,71 +118,71 @@ namespace UnityQuickSheet
                 return "Error_Empty_AssetPostprocessorClass";
             }
         }
-        
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ScriptGenerator (ScriptPrescription scriptPrescription)
+        public ScriptGenerator(ScriptPrescription scriptPrescription)
         {
             m_ScriptPrescription = scriptPrescription;
         }
-        
+
         /// <summary>
         /// Replace markdown keywords in the template text file which is currently read in.
         /// </summary>
-        public override string ToString ()
+        public override string ToString()
         {
             m_Text = m_ScriptPrescription.template;
-            m_Writer = new StringWriter ();
+            m_Writer = new StringWriter();
             m_Writer.NewLine = "\n";
-            
-            // Make sure all line endings to be Unix (Mac OSX) format.
-            m_Text = Regex.Replace (m_Text, @"\r\n?", delegate(Match m) { return "\n"; });
-            
-            // Class Name
-            m_Text = m_Text.Replace ("$ClassName", ClassName);
-            m_Text = m_Text.Replace ("$SpreadSheetName", SpreadSheetName);
-            m_Text = m_Text.Replace ("$WorkSheetClassName", WorkSheetClassName);
-            m_Text = m_Text.Replace ("$DataClassName", DataClassName);
-            m_Text = m_Text.Replace ("$AssetFileCreateFuncName", AssetFileCreateFuncName);
 
-            m_Text = m_Text.Replace ("$AssetPostprocessorClass", AssetPostprocessorClass);
-            m_Text = m_Text.Replace ("$IMPORT_PATH", ImportedFilePath);
-            m_Text = m_Text.Replace ("$ASSET_PATH", AssetFilePath);
-            
+            // Make sure all line endings to be Unix (Mac OSX) format.
+            m_Text = Regex.Replace(m_Text, @"\r\n?", delegate (Match m) { return "\n"; });
+
+            // Class Name
+            m_Text = m_Text.Replace("$ClassName", ClassName);
+            m_Text = m_Text.Replace("$SpreadSheetName", SpreadSheetName);
+            m_Text = m_Text.Replace("$WorkSheetClassName", WorkSheetClassName);
+            m_Text = m_Text.Replace("$DataClassName", DataClassName);
+            m_Text = m_Text.Replace("$AssetFileCreateFuncName", AssetFileCreateFuncName);
+
+            m_Text = m_Text.Replace("$AssetPostprocessorClass", AssetPostprocessorClass);
+            m_Text = m_Text.Replace("$IMPORT_PATH", ImportedFilePath);
+            m_Text = m_Text.Replace("$ASSET_PATH", AssetFilePath);
+
             // Other replacements
             foreach (KeyValuePair<string, string> kvp in m_ScriptPrescription.mStringReplacements)
-                m_Text = m_Text.Replace (kvp.Key, kvp.Value);
+                m_Text = m_Text.Replace(kvp.Key, kvp.Value);
 
             // Do not change tabs to spcaes of the .txt template files.
-            Match match = Regex.Match (m_Text, @"(\t*)\$MemberFields");
+            Match match = Regex.Match(m_Text, @"(\t*)\$MemberFields");
             if (match.Success)
             {
                 // Set indent level to number of tabs before $Functions keyword
                 IndentLevel = match.Groups[1].Value.Length;
                 if (m_ScriptPrescription.memberFields != null)
                 {
-                    foreach(var field in m_ScriptPrescription.memberFields)
+                    foreach (var field in m_ScriptPrescription.memberFields)
                     {
                         WriteMemberField(field);
                         WriteProperty(field);
                         WriteBlankLine();
                     }
-                    m_Text = m_Text.Replace (match.Value + "\n", m_Writer.ToString ());
+                    m_Text = m_Text.Replace(match.Value + "\n", m_Writer.ToString());
                 }
             }
-            
+
             // Return the text of the script
             return m_Text;
         }
-        
-        private void PutCurveBracesOnNewLine ()
+
+        private void PutCurveBracesOnNewLine()
         {
-            m_Text = Regex.Replace (m_Text, @"(\t*)(.*) {\n((\t*)\n(\t*))?", delegate(Match match)
-            {
-                return match.Groups[1].Value + match.Groups[2].Value + "\n" + match.Groups[1].Value + "{\n" +
-                    (match.Groups[4].Value == match.Groups[5].Value ? match.Groups[4].Value : match.Groups[3].Value);
-            });
+            m_Text = Regex.Replace(m_Text, @"(\t*)(.*) {\n((\t*)\n(\t*))?", delegate (Match match)
+           {
+               return match.Groups[1].Value + match.Groups[2].Value + "\n" + match.Groups[1].Value + "{\n" +
+                   (match.Groups[4].Value == match.Groups[5].Value ? match.Groups[4].Value : match.Groups[3].Value);
+           });
         }
 
         ///
@@ -194,7 +190,7 @@ namespace UnityQuickSheet
         ///
         private void WriteMemberField(MemberFieldData field)
         {
-            m_Writer.WriteLine (m_Indentation + "[SerializeField]");
+            m_Writer.WriteLine(m_Indentation + "[SerializeField]");
 
             var fieldName = GetFieldNameForField(field);
             string tmp;
@@ -203,14 +199,14 @@ namespace UnityQuickSheet
             else
             {
                 if (field.IsArrayType)
-                    tmp = field.Type + "[]" + " " + fieldName + " = new " + field.Type + "[0]" +";";
+                    tmp = field.Type + "[]" + " " + fieldName + " = new " + field.Type + "[0]" + ";";
                 else
                     tmp = field.Type + " " + fieldName + ";";
             }
 
-            m_Writer.WriteLine (m_Indentation + tmp);
+            m_Writer.WriteLine(m_Indentation + tmp);
         }
-    
+
         ///
         /// Write a property of a data class.
         ///
@@ -232,7 +228,7 @@ namespace UnityQuickSheet
 
             tmp += "{ get {return " + fieldName + "; } set { this." + fieldName + " = value;} }";
 
-            m_Writer.WriteLine (m_Indentation + tmp);
+            m_Writer.WriteLine(m_Indentation + tmp);
         }
 
         /// <summary>
@@ -259,36 +255,36 @@ namespace UnityQuickSheet
         /// <summary>
         /// Write a blank line.
         /// </summary>
-        private void WriteBlankLine ()
+        private void WriteBlankLine()
         {
-            m_Writer.WriteLine (m_Indentation);
+            m_Writer.WriteLine(m_Indentation);
         }
-        
+
         /// <summary>
         /// Write comment.
         /// </summary>
         /// <param name="comment"></param>
-        private void WriteComment (string comment)
+        private void WriteComment(string comment)
         {
             int index = 0;
             while (true)
             {
                 if (comment.Length <= index + CommentWrapLength)
                 {
-                    m_Writer.WriteLine (m_Indentation + "// " + comment.Substring (index));
+                    m_Writer.WriteLine(m_Indentation + "// " + comment.Substring(index));
                     break;
                 }
                 else
                 {
-                    int wrapIndex = comment.IndexOf (' ', index + CommentWrapLength);
+                    int wrapIndex = comment.IndexOf(' ', index + CommentWrapLength);
                     if (wrapIndex < 0)
                     {
-                        m_Writer.WriteLine (m_Indentation + "// " + comment.Substring (index));
+                        m_Writer.WriteLine(m_Indentation + "// " + comment.Substring(index));
                         break;
-                    }   
+                    }
                     else
                     {
-                        m_Writer.WriteLine (m_Indentation + "// " + comment.Substring (index, wrapIndex-index));
+                        m_Writer.WriteLine(m_Indentation + "// " + comment.Substring(index, wrapIndex - index));
                         index = wrapIndex + 1;
                     }
                 }

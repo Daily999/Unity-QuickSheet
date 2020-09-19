@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement>
+        <ui:Label text="GoogleQuickSheet Settings" name="Tital" style="border-left-width: 4px; border-right-width: 4px; border-top-width: 4px; border-bottom-width: 4px; -unity-font-style: bold; font-size: 16px;" />
+        <ui:Foldout text="ClientSetting" name="SettingData" style="border-bottom-width: 4px; border-top-width: 4px;">
+            <ui:VisualElement>
+                <ui:VisualElement name="ButtonGroup" style="flex-direction: row; border-top-width: 4px; border-bottom-width: 4px; flex-wrap: wrap; justify-content: flex-start;">
+                    <ui:Button text="Open Web" name="OpenWeb" />
+                    <ui:Button text="Start Auth" name="Start_Auth" />
+                    <ui:Button text="Finish Auth" name="Finish_Auth" />
+                    <ui:Button text="Reset" name="Reset" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Input" style="opacity: 1; display: flex;">
+                    <ui:TextField picking-mode="Ignore" label="Client ID" name="Client_ID" max-length="-1" />
+                    <ui:TextField picking-mode="Ignore" label="Client Secret" name="Client_Secret" max-length="-1" password="true" />
+                    <ui:TextField picking-mode="Ignore" label="AccessCode" value="Paste AcecessCode here!" text="Paste AcecessCode here!" name="AccessCode" max-length="-1" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:Foldout>
+        <ui:Foldout text="PathSetting" name="PathSetting">
+            <ui:TextField label="Template Path" name="TemplatePath">
+                <ui:Button text="Select" name="TemplateSelect" />
+            </ui:TextField>
+            <ui:TextField label="Runtime Path" name="RuntimePath">
+                <ui:Button text="Select" name="RuntimeSelect" />
+            </ui:TextField>
+            <ui:TextField label="Editor Path" name="EditorPath">
+                <ui:Button text="Select" name="EditorSelect" />
+            </ui:TextField>
+        </ui:Foldout>
+    </ui:VisualElement>
+</ui:UXML>

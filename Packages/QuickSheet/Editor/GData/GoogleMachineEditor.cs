@@ -45,11 +45,14 @@ namespace UnityQuickSheet
             {
                 machine.ReInitialize();
 
-                // Specify paths with one on the GoogleDataSettings.asset file.
-                if (string.IsNullOrEmpty(GoogleDataSettings.Instance.RuntimePath) == false)
-                    machine.RuntimeClassPath = GoogleDataSettings.Instance.RuntimePath;
-                if (string.IsNullOrEmpty(GoogleDataSettings.Instance.EditorPath) == false)
-                    machine.EditorClassPath = GoogleDataSettings.Instance.EditorPath;
+                if (GoogleDataSettings.GetSettings() != null)
+                {
+                    // Specify paths with one on the GoogleDataSettings.asset file.
+                    if (string.IsNullOrEmpty(GoogleDataSettings.Instance.RuntimePath) == false)
+                        machine.RuntimeClassPath = GoogleDataSettings.Instance.RuntimePath;
+                    if (string.IsNullOrEmpty(GoogleDataSettings.Instance.EditorPath) == false)
+                        machine.EditorClassPath = GoogleDataSettings.Instance.EditorPath;
+                }
             }
         }
 

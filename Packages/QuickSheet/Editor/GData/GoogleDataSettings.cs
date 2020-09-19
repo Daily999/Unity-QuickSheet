@@ -7,8 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 using UnityEngine;
 using UnityEditor;
-using System.Collections;
-using System.IO;
 using System.Collections.Generic;
 
 namespace UnityQuickSheet
@@ -16,9 +14,13 @@ namespace UnityQuickSheet
     /// <summary>
     /// A class manages google account setting.
     /// </summary>
-    [CreateAssetMenu(menuName = "QuickSheet/Setting/GoogleData Setting")]
+    // [CreateAssetMenu(menuName = "QuickSheet/Setting/GoogleData Setting")]
     public class GoogleDataSettings : SingletonScriptableObject<GoogleDataSettings>
     {
+        static int wasPreferencesDirCreated = 0;
+        static int wasPreferencesAssetCreated = 0;
+        public const string GOOGLEDATA_SETTINGS_ASSET_PATH = "Assets/Editor/GoogleDataSetting.asset";
+
         // A flag which indicates use local installed oauth2 json file for authentication or not.
         static public bool useOAuth2JsonFile = false;
 
@@ -72,13 +74,37 @@ namespace UnityQuickSheet
         /// <summary>
         /// Select currently exist account setting asset file.
         /// </summary>
-        [MenuItem("Edit/QuickSheet/Select Google Data Setting")]
+        [MenuItem("Tools/QuickSheet/Select Google Data Setting")]
         public static void Edit()
         {
             Selection.activeObject = Instance;
             if (Selection.activeObject == null)
             {
-                Debug.LogError("No GoogleDataSettings.asset file is found. Create setting file first.");
+                LoadOrCreate();
+            }
+        }
+
+        public static GoogleDataSettings GetSettings()
+        {
+            if (Instance == null)
+            {
+                LoadOrCreate();
+            }
+            return Instance;
+        }
+
+        public static void LoadOrCreate()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<GoogleDataSettings>(GOOGLEDATA_SETTINGS_ASSET_PATH);
+            if (settings == null)
+            {
+                settings = ScriptableObject.CreateInstance<GoogleDataSettings>();
+
+                if (!AssetDatabase.IsValidFolder("Assets/Editor") && System.Threading.Interlocked.Exchange(ref wasPreferencesDirCreated, 1) == 0)
+                    AssetDatabase.CreateFolder("Assets", "Editor");
+                if (System.Threading.Interlocked.Exchange(ref wasPreferencesAssetCreated, 1) == 0)
+                    AssetDatabase.CreateAsset(settings, GOOGLEDATA_SETTINGS_ASSET_PATH);
+                Debug.Log($"GoogleDataSettings.asset file has created at {GOOGLEDATA_SETTINGS_ASSET_PATH}.");
             }
         }
     }

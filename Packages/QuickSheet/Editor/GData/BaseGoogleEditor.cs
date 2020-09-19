@@ -8,11 +8,7 @@
 using UnityEngine;
 using UnityEditor;
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 
 // to resolve TlsException error.
@@ -20,8 +16,6 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-using Google.GData.Client;
-using Google.GData.Spreadsheets;
 
 namespace UnityQuickSheet
 {
@@ -49,6 +43,7 @@ namespace UnityQuickSheet
             ServicePointManager.ServerCertificateValidationCallback = Validator;
 
             GoogleDataSettings settings = GoogleDataSettings.Instance;
+
             if (settings != null)
             {
                 if (string.IsNullOrEmpty(settings.OAuth2Data.client_id) ||
@@ -60,6 +55,7 @@ namespace UnityQuickSheet
             }
             else
             {
+
                 Debug.LogError("Failed to get google data settings. See the google data setting if it has correct path.");
                 return;
             }
@@ -105,33 +101,6 @@ namespace UnityQuickSheet
 
             return tmp;
         }
-
-        /*
-        static string[] SplitCamelCase(string stringToSplit)
-        {
-            if (!string.IsNullOrEmpty(stringToSplit))
-            {
-                List<string> words = new List<string>();
-
-                string temp = string.Empty;
-                
-                foreach (char ch in stringToSplit)
-                {
-                    if (ch >= 'a' && ch <= 'z')
-                        temp = temp + ch;
-                    else
-                    {
-                        words.Add(temp);
-                        temp = string.Empty + ch;
-                    }
-                }
-                words.Add(temp);
-                return words.ToArray();
-            }
-            else
-                return null;
-        }
-        */
 
         public static string SplitCamelCase(string inputCamelCaseString)
         {
