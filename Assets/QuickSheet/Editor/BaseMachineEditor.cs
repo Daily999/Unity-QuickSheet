@@ -272,13 +272,16 @@ namespace UnityQuickSheet
         /// </summary>
         protected string GetTemplate(string nameWithoutExtension)
         {
-            string path = Path.Combine(GetAbsoluteCustomTemplatePath(), nameWithoutExtension + ".txt");
-            if (File.Exists(path))
-                return File.ReadAllText(path);
+            var f = AssetDatabase.LoadAssetAtPath<TextAsset>($"{machine.TemplatePath}/{nameWithoutExtension}.txt");
+            // string path = Path.Combine(GetAbsoluteCustomTemplatePath(), nameWithoutExtension + ".txt");
+            if (f != null)
+                return f.text;
+            // if (File.Exists(path))
+            // return File.ReadAllText(path);
 
-            path = Path.Combine(GetAbsoluteBuiltinTemplatePath(), nameWithoutExtension + ".txt");
-            if (File.Exists(path))
-                return File.ReadAllText(path);
+            // path = Path.Combine(GetAbsoluteBuiltinTemplatePath(), nameWithoutExtension + ".txt");
+            // if (File.Exists(path))
+            // return File.ReadAllText(path);
 
             return NoTemplateString;
         }

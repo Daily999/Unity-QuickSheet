@@ -1,0 +1,15 @@
+{
+    "name": "Daily.QuickSheet.Editor",
+    "references": [
+        "GUID:166ea30cf92bdb747ae3cde6578e2fe8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

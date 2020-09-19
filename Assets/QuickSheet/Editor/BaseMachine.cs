@@ -105,8 +105,8 @@ namespace UnityQuickSheet
             return false;
         }
 
-        protected readonly string DEFAULT_CLASS_PATH = "Scripts/Runtime";
-        protected readonly string DEFAULT_EDITOR_PATH = "Scripts/Editor";
+        protected readonly string DEFAULT_CLASS_PATH = "Packages/com.daily.quicksheet/Runtime";
+        protected readonly string DEFAULT_EDITOR_PATH = "Packages/com.daily.quicksheet/Editor";
 
         protected void OnEnable()
         {

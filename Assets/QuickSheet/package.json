@@ -1,0 +1,14 @@
+{
+    "name": "com.daily.quicksheet",
+    "version": "1.0.0",
+    "displayName": "QuickSheet",
+    "description": "test",
+    "unity": "2019.1",
+    "unityRelease": "0b5",
+    "keywords": [
+        "keyword1",
+        "keyword2",
+        "keyword3"
+    ],
+    "type": "tool"
+}
