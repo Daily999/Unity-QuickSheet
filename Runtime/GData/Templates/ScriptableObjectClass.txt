@@ -1,0 +1,24 @@
+using UnityEngine;
+
+///
+/// !!! Machine generated code !!!
+///
+[System.Serializable]
+public class $ClassName : ScriptableObject 
+{
+    [HideInInspector] 
+    [SerializeField] 
+    public string SheetName = "";
+    
+    [HideInInspector] 
+    [SerializeField] 
+    public string WorksheetName = "";
+
+    public $DataClassName[] dataArray;
+    
+    void OnEnable()
+    {
+        if (dataArray == null)
+            dataArray = new $DataClassName[0];
+    }
+}

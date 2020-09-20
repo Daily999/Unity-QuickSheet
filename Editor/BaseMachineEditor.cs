@@ -231,7 +231,8 @@ namespace UnityQuickSheet
         /// </summary>
         protected string TargetPathForClassScript(string worksheetName)
         {
-            return Path.Combine("Assets/" + machine.RuntimeClassPath, worksheetName + "." + "cs");
+            return $"{machine.RuntimeClassPath}/{worksheetName}.cs";
+            // return Path.Combine("Assets/" + machine.RuntimeClassPath, worksheetName + "." + "cs");
         }
 
         /// <summary>
@@ -239,7 +240,8 @@ namespace UnityQuickSheet
         /// </summary>
         protected string TargetPathForEditorScript(string worksheetName)
         {
-            return Path.Combine("Assets/" + machine.EditorClassPath, worksheetName + "Editor" + "." + "cs");
+            return $"{machine.EditorClassPath}/{worksheetName}Editor.cs";
+            // return Path.Combine("Assets/" + machine.EditorClassPath, worksheetName + "Editor" + "." + "cs");
         }
 
         /// <summary>
@@ -248,7 +250,8 @@ namespace UnityQuickSheet
         /// </summary>
         protected string TargetPathForData(string worksheetName)
         {
-            return Path.Combine("Assets/" + machine.RuntimeClassPath, worksheetName + "Data" + "." + "cs");
+            return $"{machine.RuntimeClassPath}/{worksheetName}Data.cs";
+            // return Path.Combine("Assets/" + machine.RuntimeClassPath, worksheetName + "Data" + "." + "cs");
         }
 
         /// <summary>
@@ -256,7 +259,8 @@ namespace UnityQuickSheet
         /// </summary>
         protected string TargetPathForAssetFileCreateFunc(string worksheetName)
         {
-            return Path.Combine("Assets/" + machine.EditorClassPath, worksheetName + "AssetCreator" + "." + "cs");
+            return $"{machine.EditorClassPath}/{worksheetName}AssetCreator.cs";
+            // return Path.Combine("Assets/" + machine.EditorClassPath, worksheetName + "AssetCreator" + "." + "cs");
         }
 
         /// <summary>
@@ -264,7 +268,8 @@ namespace UnityQuickSheet
         /// </summary>
         protected string TargetPathForAssetPostProcessorFile(string worksheetName)
         {
-            return Path.Combine("Assets/" + machine.EditorClassPath, worksheetName + "AssetPostProcessor" + "." + "cs");
+            return $"{machine.EditorClassPath}/{worksheetName}AssetPostProcessor.cs";
+            // return Path.Combine("Assets/" + machine.EditorClassPath, worksheetName + "AssetPostProcessor" + "." + "cs");
         }
 
         /// <summary>

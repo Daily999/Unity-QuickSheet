@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbcda13c00cae4f4087d84a149a1c70b, type: 3}
+  m_Name: GoogleDataSetting
+  m_EditorClassIdentifier: 
+  TemplatePath: Packages/com.daily.quicksheet/Runtime/GData/Templates
+  RuntimePath: D:/UnityProject/Unity-QuickSheet/Assets
+  EditorPath: D:/UnityProject/Unity-QuickSheet/Assets
+  OAuth2Data:
+    client_id: 737142730839-h2lv5q8vl9jr2it9rlc3upmmu01klo4f.apps.googleusercontent.com
+    auth_uri: 
+    token_uri: 
+    auth_provider_x509_cert_url: 
+    client_secret: KIkfevRc3qwoq42hwv6fIBkO
+    redirect_uris: []
+  _AccessCode: 4/4QGZ81-ZPgGsTBKrFVtfWIKfUU5OUoOFx5cNJS-fr3SRyk9xzeAfOrQ
+  _RefreshToken: 1//0eGBry141pExECgYIARAAGA4SNwF-L9Ir30-d3e3kKQvlNnDey0KYvjUBn_LCc0-ucuTdnLgohcbjkZD-wkzlBEF_w43Rrv_ha6w
+  _AccessToken: ya29.a0AfH6SMBlOy0znJEP4Pft9rspSNMnROzHwpRam5VrpQ5Hg4QRsKMhev0OdqHp-cA-f3cQ0eD6llEBAeuvaH7Zzdl_PDvBvnPhT43XASzLC5z86qYDozcsqpE_bXu7ZlVzZSsIg9YFg0LGZu_Em87aVX7-Mz4rbYqDdFU

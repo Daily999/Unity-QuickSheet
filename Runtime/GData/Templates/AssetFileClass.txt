@@ -1,14 +1,12 @@
-using UnityEngine;
+
 using UnityEditor;
-using System.IO;
-using UnityQuickSheet;
 
 ///
 /// !!! Machine generated code !!!
 /// 
 public partial class GoogleDataAssetUtility
 {
-    [MenuItem("Assets/Create/Google/$ClassName")]
+    [MenuItem("Assets/Create/QuickSheet/$ClassName")]
     public static void $AssetFileCreateFuncName()
     {
         $ClassName asset = CustomAssetUtility.CreateAsset<$ClassName>();
