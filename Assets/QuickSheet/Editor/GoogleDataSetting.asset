@@ -16,12 +16,12 @@ MonoBehaviour:
   RuntimePath: D:/UnityProject/Unity-QuickSheet/Assets
   EditorPath: D:/UnityProject/Unity-QuickSheet/Assets
   OAuth2Data:
-    client_id: 737142730839-h2lv5q8vl9jr2it9rlc3upmmu01klo4f.apps.googleusercontent.com
+    client_id: 
     auth_uri: 
     token_uri: 
     auth_provider_x509_cert_url: 
-    client_secret: KIkfevRc3qwoq42hwv6fIBkO
+    client_secret: 
     redirect_uris: []
-  _AccessCode: 4/4QGZ81-ZPgGsTBKrFVtfWIKfUU5OUoOFx5cNJS-fr3SRyk9xzeAfOrQ
-  _RefreshToken: 1//0eGBry141pExECgYIARAAGA4SNwF-L9Ir30-d3e3kKQvlNnDey0KYvjUBn_LCc0-ucuTdnLgohcbjkZD-wkzlBEF_w43Rrv_ha6w
-  _AccessToken: ya29.a0AfH6SMBlOy0znJEP4Pft9rspSNMnROzHwpRam5VrpQ5Hg4QRsKMhev0OdqHp-cA-f3cQ0eD6llEBAeuvaH7Zzdl_PDvBvnPhT43XASzLC5z86qYDozcsqpE_bXu7ZlVzZSsIg9YFg0LGZu_Em87aVX7-Mz4rbYqDdFU
+  _AccessCode: 
+  _RefreshToken: 
+  _AccessToken: 
