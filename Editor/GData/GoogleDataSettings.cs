@@ -38,7 +38,7 @@ namespace UnityQuickSheet
         /// <summary>
         /// A default path where .txt template files are.
         /// </summary>
-        public string TemplatePath = "Packages/com.daily.quicksheet/Runtime/GData/Templates";
+        public string TemplatePath = "Packages/com.daily.quicksheet/Editor/Templates";
 
         /// <summary>
         /// A path where generated ScriptableObject derived class and its data class script files are to be put.
@@ -95,7 +95,9 @@ namespace UnityQuickSheet
 
         public static void LoadOrCreate()
         {
-            var settings = AssetDatabase.LoadAssetAtPath<GoogleDataSettings>(GOOGLEDATA_SETTINGS_ASSET_PATH);
+            var gets = AssetDatabase.FindAssets("t:GoogleDataSettings");
+            var settings = AssetDatabase.LoadAssetAtPath<GoogleDataSettings>(AssetDatabase.GUIDToAssetPath(gets[0]));
+            // var settings = AssetDatabase.LoadAssetAtPath<GoogleDataSettings>(GOOGLEDATA_SETTINGS_ASSET_PATH);
             if (settings == null)
             {
                 settings = ScriptableObject.CreateInstance<GoogleDataSettings>();

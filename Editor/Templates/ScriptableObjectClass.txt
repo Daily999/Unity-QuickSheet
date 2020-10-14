@@ -4,15 +4,16 @@ using UnityEngine;
 /// !!! Machine generated code !!!
 ///
 [System.Serializable]
+[CreateAssetMenu(fileName = "$ClassName", menuName = "QuickSheet/$ClassName", order = 0)]
 public class $ClassName : ScriptableObject 
 {
     [HideInInspector] 
     [SerializeField] 
-    public string SheetName = "";
+    public string SheetName = "$SpreadSheetName";
     
     [HideInInspector] 
     [SerializeField] 
-    public string WorksheetName = "";
+    public string WorksheetName = "$ClassName";
 
     public $DataClassName[] dataArray;
     
