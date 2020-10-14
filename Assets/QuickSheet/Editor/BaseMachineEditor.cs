@@ -73,6 +73,10 @@ namespace UnityQuickSheet
 
             ScriptPrescription sp = new ScriptPrescription();
 
+            sp.className = machine.WorkSheetName;
+            sp.spreadsheetName = machine.SpreadSheetName;
+            sp.worksheetClassName = machine.WorkSheetName;
+
             if (m.onlyCreateDataClass)
             {
                 CreateDataClassScript(m, sp);
@@ -82,7 +86,7 @@ namespace UnityQuickSheet
                 CreateScriptableObjectClassScript(m, sp);
                 CreateScriptableObjectEditorClassScript(m, sp);
                 CreateDataClassScript(m, sp);
-                CreateAssetCreationScript(m, sp);
+                // CreateAssetCreationScript(m, sp);
             }
 
             AssetDatabase.Refresh();
